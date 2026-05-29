@@ -107,6 +107,13 @@ jobs:
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
           CARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABIHF_LINKER: arm-linux-gnueabihf-gcc
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LogLib2Server-${{ matrix.pkg_suffix }}
+          path: target/${{ matrix.target }}/release/LogLib2Server${{ matrix.ext }}
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Upload release asset
         if: github.event_name == 'release'
         env:
