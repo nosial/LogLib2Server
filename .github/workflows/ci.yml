@@ -118,6 +118,7 @@ jobs:
 
       - name: Upload release asset
         if: github.event_name == 'release'
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
